@@ -1,3 +1,4 @@
+from rest_framework import permissions
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -15,5 +16,19 @@ class FacebookLogin(APIView):
         data = {
             'token': token.key,
             'user': UserSerializer(user).data
+        }
+        return Response(data)
+
+
+class FacebookUserGetInfo(APIView):
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
+
+    def get(self, request):
+        print(request.user)
+        serializer = UserSerializer(request.user)
+        data = {
+            'user': serializer.data
         }
         return Response(data)

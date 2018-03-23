@@ -1,13 +1,14 @@
+import requests
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.contrib.sites import requests
+
 from rest_framework import status
 
 User = get_user_model()
 
 
 class APIFacebookBackend:
-    CLIENT_ID = settings.FACABOOK_APP_ID,
+    CLIENT_ID = settings.FACEBOOK_APP_ID,
     CLIENT_SECRET_ID = settings.FACEBOOK_SECRET_CODE
     URL_ACCESS_TOKEN = 'https://graph.facebook.com/v2.12/oauth/access_token'
     URL_ME = 'https://graph.facebook.com/v2.12/me'
@@ -19,17 +20,21 @@ class APIFacebookBackend:
                 'fields': ','.join([
                     'id',
                     'name',
-                    'pricture_width(100)',
-                    'frist_name',
+                    'picture.width(2500)',
+                    'first_name',
                     'last_name',
                 ]),
             }
 
             response = requests.get(self.URL_ME, params=params_user)
+
             if response.status_code == status.HTTP_200_OK:
                 response_dict = response.json()
                 return response_dict
-            return None
+            else:
+                print('status code: ', response.status_code)
+                print('\n\nresponse')
+                print(response)
 
         try:
             user_info = get_user_info(access_token)
@@ -52,7 +57,7 @@ class APIFacebookBackend:
 
             return user
         except Exception as e:
-            print(e)
+            print('facebook authenticate error: ', e)
             return None
 
     def get_user(self, user_id):

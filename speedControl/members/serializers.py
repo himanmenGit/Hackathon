@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             'pk',
-            'username'
+            'username',
             'img_profile_url',
             'first_name',
             'last_name',
