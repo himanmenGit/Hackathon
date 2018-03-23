@@ -1,66 +1,14 @@
-<!DOCTYPE html>
-<html lang="ko">
+{% extends 'base.html' %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>asd</title>
+{% block content %}
+<div>
+    <h1 id="user-info" class="none"></h1>
+    <h3 id="user-name"></h3>
 
-  <link rel="stylesheet" href="css/base.css">
-</head>
+    <button id="btn-facebook">페이스북 로그인</button>
 
-<body>
-  <h1 id="user-info" class="none"></h1>
-  <h3 id="user-name"></h3>
+    <!--페이스북 로그인 페이지 -->
+    {% include 'facebook_login.html' %}
 
-  <button id="btn-facebook">페이스북 로그인</button>
-
-  <script type="text/javascript" src="js/cookie.js"></script>
-  <script type="text/javascript" src="js/axios.js"></script>
-  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="js/fb.js"></script>
-  <script type="text/javascript" src="js/init-user-info.js"></script>
-  <script>
-    initUserInfo();
-
-    function facebookLogin() {
-      FB.getLoginStatus(function(response) {
-        var accessToken;
-        if (response.status != 'connected') {
-          FB.login(function(response) {
-            accessToken = response.authResponse.accessToken
-            console.log(accessToken)
-          });
-        }else{
-          accessToken = response.authResponse.accessToken
-        }
-        getFacebookUser(accessToken)
-      });
-    }
-
-    function getFacebookUser(access_token) {
-      axios({
-        url: 'http://localhost:8000/api/members/login/',
-        method: 'post',
-        data: {
-          access_token: access_token,
-        }
-      }).then(function(response) {
-        console.log(response.data)
-        var token = response.data.token
-        var user = response.data.user
-        setCookie('token', token, 7);
-        setUserInfo(user)
-      }).catch(function(error) {
-        console.log(error.response);
-      });
-    }
-
-    $('#btn-facebook').click(function() {
-      facebookLogin();
-    })
-  </script>
-</body>
-
-</html>
+</div>
+{% endblock %}
