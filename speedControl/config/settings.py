@@ -28,6 +28,22 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'membser.User'
 
+FACEBOOK_APP_ID = '556722268030664'
+FACEBOOK_SECRET_CODE = '0c326ad6b08e4f1749c259b9f0eb042f'
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'members.backends.FacebookBackend',
+    'members.backends.APIFacebookBackend',
+]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000',
+)
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,12 +54,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'corsheaders',
     'django_extensions',
+    'rest_framework',
+    'rest_framework.authtoken',
 
     'members',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -105,9 +126,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
