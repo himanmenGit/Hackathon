@@ -14,19 +14,26 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT_DIR = os.path.dirname(BASE_DIR)
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
+MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
+MEDIA_URL = '/media/'
 
-# SECURITY WARNING: keep the secret key used in production secret!
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
+STATIC_URL = '/static/'
+
+##
 SECRET_KEY = 'pj21*hr9%_z2(@6pe!*gsms4n(b=7(dr_q%h#(ya5k_0!9-&mo'
+##
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'membser.User'
+AUTH_USER_MODEL = 'members.User'
 
 FACEBOOK_APP_ID = '556722268030664'
 FACEBOOK_SECRET_CODE = '0c326ad6b08e4f1749c259b9f0eb042f'
