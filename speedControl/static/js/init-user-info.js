@@ -21,9 +21,8 @@ function getUserInfo(token) {
 }
 
 function setUserInfo(user) {
-  $('h1#user-info').text(user.username.concat('(으)로 로그인 중입니다.'));
+  $('h1#user-info').text(user.nickname.concat('(으)로 로그인 중입니다.'));
   $('img#user-profile').attr('src', user.img_profile_url);
-  $('h3#user-name').text(user.nickname);
   $('h1#user-info').removeClass('none');
   $('form#input').addClass('none');
   $('#btn-facebook').addClass('none');

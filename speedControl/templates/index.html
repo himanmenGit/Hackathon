@@ -1,14 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div>
-    <h1 id="user-info" class="none"></h1>
-    <h3 id="user-name"></h3>
+<div class="container">
+    <div id="user">
+        <h1 id="user-info" class="none"></h1>
+        <h3 id="user-name"></h3>
+    </div>
 
     <button id="btn-facebook">페이스북 로그인</button>
 
     <!--페이스북 로그인 페이지 -->
     {% include 'facebook_login.html' %}
+
+    <div id="chating">
+
+    </div>
+    <div id="vote">
+        <button id="btn-vote">빠름 투표</button>
+    </div>
 
 </div>
 {% endblock %}
