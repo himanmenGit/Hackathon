@@ -17,7 +17,7 @@ def login_view(request):
     print(user)
     if user is not None:
         login(request, user)
-    return redirect('index')
+    return redirect('room', room_name='wps')
 
 
 def logout_view(request):

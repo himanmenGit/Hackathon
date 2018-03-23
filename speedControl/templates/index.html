@@ -4,12 +4,13 @@
 <div class="container">
 
     <div>
-        {% if user.is_authenticated %}
+        {% if request.user.is_authenticated %}
         <div>
-            <h3>{{ user.nickname }} 으(로) 로그인 중</h3>
-            <form action="{% url 'members:logout' %}">
-                <button type="submit">로그아웃</button>
-            </form>
+            <span>{{ request.user.nickname }} 으(로) 로그인 중</span>
+            <a href="{% url 'members:logout' %}">로그아웃</a>
+        </div>
+        <div>
+            <a href="{% url 'room' room_name='wps' %}">웹 프로그래밍 스쿨 방 가기</a>
         </div>
         {% else %}
         <div>
