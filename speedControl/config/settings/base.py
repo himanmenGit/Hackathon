@@ -129,7 +129,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'corsheaders',
+    'channels',
 
+    'chatting',
     'utils',
     'members',
     'raven.contrib.django.raven_compat',
@@ -209,7 +211,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
 
 LOGGING = {
     'version': 1,
@@ -251,6 +252,16 @@ LOGGING = {
             'level': 'DEBUG',
             'handlers': ['console'],
             'propagate': False,
+        },
+    },
+}
+
+ASGI_APPLICATION = "config.routing.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
         },
     },
 }

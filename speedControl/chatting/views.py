@@ -1,10 +1,24 @@
 from django.shortcuts import render, redirect
 
+from django.utils.safestring import mark_safe
+import json
+
 from utils.sms import SMS
 
 
 def index(request):
     return render(request, 'index.html')
+
+
+def chat(request):
+    return render(request, 'chat/index.html')
+
+
+def room(request, room_name):
+    print(room_name)
+    return render(request, 'chat/room.html', {
+        'room_name_json': mark_safe(json.dumps(room_name))
+    })
 
 
 def send_sms_view(request):
