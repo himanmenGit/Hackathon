@@ -46,11 +46,11 @@ AWS_ACCESS_KEY_ID = secrets['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = secrets['AWS_SECRET_ACCESS_KEY']
 AWS_STORAGE_BUCKET_NAME = secrets['AWS_STORAGE_BUCKET_NAME']
 
+FACEBOOK_APP_ID = secrets['FACEBOOK_APP_ID'],
+FACEBOOK_SECRET_CODE = secrets['FACEBOOK_SECRET_CODE']
 
 AUTH_USER_MODEL = 'members.User'
 
-FACEBOOK_APP_ID = '556722268030664'
-FACEBOOK_SECRET_CODE = '0c326ad6b08e4f1749c259b9f0eb042f'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'members.backends.APIFacebookBackend',
@@ -64,6 +64,8 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
 )
+
+
 # Application definition
 
 
@@ -130,9 +132,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-
     'corsheaders',
-    'django_extensions',
     'rest_framework',
     'rest_framework.authtoken',
 
