@@ -1,7 +1,8 @@
-from django.urls import path, include
+from django.urls import path
 
-from chating.views import Chating
+from chating.views import index, send_sms_view
 
 urlpatterns = [
-    path('', Chating, name='chaing'),
+    path('', index, name='index'),
+    path('send-sms/', send_sms_view, name='send-sms')
 ]
