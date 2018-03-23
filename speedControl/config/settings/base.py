@@ -58,17 +58,8 @@ AUTH_USER_MODEL = 'members.User'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'members.backends.APIFacebookBackend',
+    'members.backends.FacebookBackend',
 ]
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-    )
-}
-
-CORS_ORIGIN_WHITELIST = (
-    'localhost:3000',
-)
 
 
 # Application definition
@@ -138,18 +129,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'corsheaders',
-    'rest_framework',
-    'rest_framework.authtoken',
 
     'utils',
     'members',
-    'chating',
     'raven.contrib.django.raven_compat',
 ]
 
 MIDDLEWARE = [
-    # 'corsheaders.middleware.CorsMiddleware',
-
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

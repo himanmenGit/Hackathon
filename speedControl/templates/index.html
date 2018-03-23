@@ -2,32 +2,23 @@
 
 {% block content %}
 <div class="container">
-    <div id="user">
-        <h1 id="user-info" class="none"></h1>
-        <h3 id="user-name"></h3>
+
+    <div>
+        {% if user.is_authenticated %}
+        <div>
+            <h3>{{ user.nickname }} 으(로) 로그인 중</h3>
+            <form action="{% url 'members:logout' %}">
+                <button type="submit">로그아웃</button>
+            </form>
+        </div>
+        {% else %}
+        <div>
+            <a class="btn btn-primary"
+               href="https://www.facebook.com/v2.12/dialog/oauth?client_id=556722268030664&redirect_uri=http://localhost:8000/members/login/">페이스북
+                로그인</a>
+        </div>
+        {% endif %}
     </div>
 
-    <button id="btn-facebook">페이스북 로그인</button>
-
-    <!--페이스북 로그인 페이지 -->
-    {% include 'facebook_login.html' %}
-
-
-    <!--채팅-->
-    <div id="chating">
-
-    </div>
-
-    <!--투표 버튼-->
-    <div id="vote">
-        <button id="btn-vote">빠름 투표</button>
-    </div>
-
-    <!--sms 보내기-->
-    <!--<div>-->
-        <!--<form action="{% url 'send-sms' %}">-->
-            <!--<button type="submit">문자 보내기</button>-->
-        <!--</form>-->
-    <!--</div>-->
 </div>
 {% endblock %}
