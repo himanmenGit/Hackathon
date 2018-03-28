@@ -14,20 +14,23 @@ class SMS():
         self.params['from'] = settings.LHY_NUMBER
         self.params['text'] = text
 
+        print(self.params)
+
     def send_sms(self):
-        cool = Message(self.api_key, self.api_secret)
-        try:
-            response = cool.send(self.params)
-            print("Success Count : %s" % response['success_count'])
-            print("Error Count : %s" % response['error_count'])
-            print("Group ID : %s" % response['group_id'])
-
-            if "error_list" in response:
-                print("Error List : %s" % response['error_list'])
-
-        except CoolsmsException as e:
-            print("Error Code : %s" % e.code)
-            print("Error Message : %s" % e.msg)
+        # cool = Message(self.api_key, self.api_secret)
+        # try:
+        #     response = cool.send(self.params)
+        #     print("Success Count : %s" % response['success_count'])
+        #     print("Error Count : %s" % response['error_count'])
+        #     print("Group ID : %s" % response['group_id'])
+        #
+        #     if "error_list" in response:
+        #         print("Error List : %s" % response['error_list'])
+        #
+        # except CoolsmsException as e:
+        #     print("Error Code : %s" % e.code)
+        #     print("Error Message : %s" % e.msg)
+        pass
 
 
 if __name__ == '__main__':

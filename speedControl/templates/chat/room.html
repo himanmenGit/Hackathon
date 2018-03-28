@@ -50,13 +50,47 @@
     chatSocket.onclose = function(e) {
     }
 
+
+
+
     </script>
 </div>
 <div>
     <form action="{% url 'send-sms' %}" method="post">
         {% csrf_token %}
         <input type="hidden" name="next-path" value={{ request.get_full_path }}>
-        <button type="submit">문자보내기(많이 누르면 큰일나요..)</button>
+        <input type="text" name="text" value="" placeholder="문자내용을 적어 주세요.(한글 45자)" required maxlength="45" onblur="inputLengthCheck(this);">
+        <button type="submit">문자보내기(30분)</button>
     </form>
 </div>
+<script>
+function inputLengthCheck(eventInput)
+{
+    var inputText = $(eventInput).val();
+    var inputMaxLength = $(eventInput).prop("maxlength");
+
+    var j = 0;
+
+    var count = 0;
+
+    for(var i = 0;i < inputText.length;i++)
+    {
+        val = escape(inputText.charAt(i)).length;
+
+        if(val == 6)
+        {
+            j++;
+        }
+        j++;
+        if(j <= inputMaxLength){
+            count++;
+        }
+    }
+
+    if(j > inputMaxLength)
+    {
+        $(eventInput).val(inputText.substr(0, count));}
+    }
+}
+</script>
 {% endblock %}
